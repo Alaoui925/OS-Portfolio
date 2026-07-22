@@ -1,0 +1,178 @@
+import {
+  FaHtml5,
+  FaCss3,
+  FaJs,
+  FaReact,
+  FaPhp,
+  FaGithub,
+  FaGitAlt,
+  FaNodeJs,
+  FaPython,
+} from "react-icons/fa";
+import { RiTailwindCssFill } from "react-icons/ri";
+import { DiMysql } from "react-icons/di";
+import {
+  SiCplusplus,
+  SiTypescript,
+  SiNextdotjs,
+  SiFigma,
+  SiTensorflow,
+  SiPytorch,
+  SiScikitlearn,
+  SiPandas,
+  SiNumpy,
+} from "react-icons/si";
+
+const skills = [
+  {
+    name: "HTML5",
+    icon: FaHtml5,
+    color: "#E34F26",
+    level: 95,
+    category: "Frontend",
+  },
+  {
+    name: "CSS3",
+    icon: FaCss3,
+    color: "#1572B6",
+    level: 90,
+    category: "Frontend",
+  },
+  {
+    name: "JavaScript",
+    icon: FaJs,
+    color: "#F7DF1E",
+    level: 90,
+    category: "Frontend",
+  },
+  {
+    name: "React",
+    icon: FaReact,
+    color: "#61DAFB",
+    level: 90,
+    category: "Frontend",
+  },
+  {
+    name: "TypeScript",
+    icon: SiTypescript,
+    color: "#3178C6",
+    level: 75,
+    category: "Frontend",
+  },
+  {
+    name: "Next.js",
+    icon: SiNextdotjs,
+    color: "#FFFFFF",
+    level: 70,
+    category: "Frontend",
+  },
+  {
+    name: "Tailwind CSS",
+    icon: RiTailwindCssFill,
+    color: "#06B6D4",
+    level: 92,
+    category: "Frontend",
+  },
+  {
+    name: "Node.js",
+    icon: FaNodeJs,
+    color: "#339933",
+    level: 75,
+    category: "Backend",
+  },
+  {
+    name: "Python",
+    icon: FaPython,
+    color: "#3776AB",
+    level: 85,
+    category: "Backend",
+  },
+  {
+    name: "PHP",
+    icon: FaPhp,
+    color: "#777BB4",
+    level: 70,
+    category: "Backend",
+  },
+  {
+    name: "MySQL",
+    icon: DiMysql,
+    color: "#4479A1",
+    level: 80,
+    category: "Databases",
+  },
+  {
+    name: "C++",
+    icon: SiCplusplus,
+    color: "#00599C",
+    level: 75,
+    category: "Languages",
+  },
+  {
+    name: "Git",
+    icon: FaGitAlt,
+    color: "#F05032",
+    level: 88,
+    category: "Tools",
+  },
+  {
+    name: "GitHub",
+    icon: FaGithub,
+    color: "#FFFFFF",
+    level: 90,
+    category: "Tools",
+  },
+  {
+    name: "Figma",
+    icon: SiFigma,
+    color: "#F24E1E",
+    level: 70,
+    category: "Tools",
+  },
+  {
+    name: "TensorFlow",
+    icon: SiTensorflow,
+    color: "#FF6F00",
+    level: 65,
+    category: "AI / ML",
+  },
+  {
+    name: "PyTorch",
+    icon: SiPytorch,
+    color: "#EE4C2C",
+    level: 60,
+    category: "AI / ML",
+  },
+  {
+    name: "Scikit-learn",
+    icon: SiScikitlearn,
+    color: "#F0924E",
+    level: 70,
+    category: "AI / ML",
+  },
+  {
+    name: "Pandas",
+    icon: SiPandas,
+    color: "#150458",
+    level: 80,
+    category: "AI / ML",
+  },
+  {
+    name: "NumPy",
+    icon: SiNumpy,
+    color: "#013243",
+    level: 80,
+    category: "AI / ML",
+  },
+];
+
+export const skillCategories = [
+  "Frontend",
+  "Backend",
+  "Languages",
+  "Databases",
+  "AI / ML",
+  "Tools",
+];
+
+export default skills;
