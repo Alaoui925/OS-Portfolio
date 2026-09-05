@@ -20,10 +20,8 @@ export default function Loader() {
   }, []);
 
   return (
-    <div className="loader fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0B1220] via-[#111827] to-black">
+    <div className="loader fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#f4f3ee] via-[#e8eae0] to-[#f4f3ee]">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
-
         .loader{
           animation: exitLoader .9s ease forwards;
           animation-delay:2.8s;
@@ -40,7 +38,7 @@ export default function Loader() {
           display:inline-block;
           width:3px;
           height:.9em;
-          background:white;
+          background:#7a8a6f;
           margin-left:6px;
           animation:blink .8s infinite;
         }
@@ -82,21 +80,21 @@ export default function Loader() {
       `}</style>
 
       {/* Glow */}
-      <div className="glow absolute h-96 w-96 rounded-full bg-emerald-400/10 blur-[120px]" />
+      <div className="glow absolute h-96 w-96 rounded-full bg-accent/15 blur-[120px]" />
 
       <div className="relative flex flex-col items-center gap-12">
         <h1
-          className="text-8xl text-white"
+          className="text-8xl text-ink"
           style={{
-            fontFamily: "'Dancing Script', cursive",
+            fontFamily: "'Fraunces', serif",
           }}
         >
           {displayed}
           <span className="cursor" />
         </h1>
 
-        <div className="w-56 h-[2px] bg-white/10 rounded-full overflow-hidden">
-          <div className="progress h-full bg-gradient-to-r from-emerald-400 to-blue-400 rounded-full" />
+        <div className="w-56 h-[2px] bg-ink/10 rounded-full overflow-hidden">
+          <div className="progress h-full bg-gradient-to-r from-accent to-accent-hover rounded-full" />
         </div>
       </div>
     </div>

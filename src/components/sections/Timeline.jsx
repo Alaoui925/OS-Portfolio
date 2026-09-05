@@ -52,15 +52,15 @@ export default function Timeline() {
   const allIcons = [...icons, ...icons];
 
   return (
-    <section className="relative overflow-hidden py-20   bg-black">
+    <section className="relative overflow-hidden py-20 bg-secondary">
       {/* Background Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(96,165,250,0.10),transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(122,138,111,0.07),transparent_70%)] pointer-events-none" />
 
       {/* Top Fade */}
-      <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black/10 to-transparent pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-primary to-transparent pointer-events-none" />
 
       {/* Bottom Fade */}
-      <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-primary to-transparent pointer-events-none" />
 
       <div ref={marqueeRef} className="flex min-w-max">
         {allIcons.map((Icon, index) => (
@@ -71,14 +71,15 @@ export default function Timeline() {
             <Icon
               className="
                 text-5xl
-                text-gray-500
+                text-[#9aa38f]
                 transition-all
                 duration-300
                 cursor-pointer
                 
                 hover:scale-125
                 hover:-translate-y-1
-                hover:drop-shadow-[0_0_15px_rgba(96,165,250,0.45)]
+                hover:text-accent
+                hover:drop-shadow-[0_0_15px_rgba(122,138,111,0.5)]
               "
             />
           </div>

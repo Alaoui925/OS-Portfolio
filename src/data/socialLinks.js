@@ -4,19 +4,19 @@ const socialLinks = [
   {
     id: 1,
     name: "GitHub",
-    url: "https://github.com/your-username",
+    url: "https://github.com/Alaoui925",
     icon: FaGithub,
   },
   {
     id: 2,
     name: "LinkedIn",
-    url: "https://linkedin.com/in/your-username",
+    url: "#",
     icon: FaLinkedin,
   },
   {
     id: 3,
     name: "Twitter",
-    url: "https://twitter.com/your-username",
+    url: "#",
     icon: FaTwitter,
   },
   {
@@ -29,7 +29,8 @@ const socialLinks = [
 
 export const contactInfo = {
   email: "elalaouioussama2002@gmail.com",
-  location: "Jakarta, Indonesia",
+  phone: "+212 6 96 15 92 51",
+  location: "Morocco",
   formEndpoint: "https://formsubmit.co/ajax/elalaouioussama2002@gmail.com",
 };
 

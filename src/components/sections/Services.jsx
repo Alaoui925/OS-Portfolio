@@ -5,30 +5,30 @@ const featuredServices = [
   {
     id: 1,
     icon: Monitor,
-    title: "Web Development",
+    title: "Web Design",
     description:
-      "Building modern, responsive web applications with React, Next.js, and cutting-edge technologies.",
+      "Modern, responsive web applications built with React, Next.js, and cutting-edge technologies.",
   },
   {
     id: 2,
     icon: Brain,
     title: "AI & ML Solutions",
     description:
-      "Developing intelligent systems and data-driven solutions powered by machine learning.",
+      "Intelligent systems and data-driven solutions powered by machine learning.",
   },
   {
     id: 3,
     icon: Palette,
     title: "UI/UX Design",
     description:
-      "Crafting elegant, user-centered interfaces with modern design principles.",
+      "Elegant, user-centered interfaces crafted with modern design principles.",
   },
   {
     id: 4,
     icon: Server,
     title: "Backend Development",
     description:
-      "Building robust APIs and server architectures with Node.js, Python, and MySQL.",
+      "Robust APIs and server architectures with Node.js, Python, and MySQL.",
   },
 ];
 
@@ -43,16 +43,32 @@ const cardVariants = {
 
 export default function Services() {
   return (
-    <section className="bg-[#0a0a0f] py-24 md:py-32 px-6 md:px-10 lg:px-14">
+    <section id="services" className="relative bg-surface py-24 md:py-32 px-6 md:px-10 lg:px-14 overflow-hidden">
+      {/* faint circuit decoration */}
+      <svg
+        aria-hidden="true"
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-40 h-64 opacity-[0.14] text-accent"
+        viewBox="0 0 100 160"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1"
+      >
+        <path d="M90 10 H50 V60 H10 M50 60 V110 H90 M90 110 H70" />
+        <circle cx="90" cy="10" r="3" />
+        <circle cx="10" cy="60" r="3" />
+        <circle cx="90" cy="110" r="3" />
+        <circle cx="70" cy="160" r="3" fill="currentColor" />
+      </svg>
+
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-16 md:mb-20">
+        <div className="mb-16 md:mb-20 max-w-3xl">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-[0.72rem] font-semibold tracking-[0.22em] uppercase text-[#6b7280] mb-4"
+            className="eyebrow"
           >
             What I Do
           </motion.p>
@@ -61,15 +77,14 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.08 }}
             viewport={{ once: true }}
-            className="text-[clamp(2.2rem,4.5vw,3.2rem)] font-bold leading-[1.1] text-white"
-            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            className="heading-display"
           >
             Services
           </motion.h2>
         </div>
 
-        {/* Services row with dividers */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        {/* Services row */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 lg:divide-x lg:divide-line">
           {featuredServices.map((service, index) => (
             <motion.div
               key={service.id}
@@ -78,40 +93,19 @@ export default function Services() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className={`group relative py-10 px-6 lg:px-8 transition-all duration-300 hover:-translate-y-1 ${
-                index < featuredServices.length - 1
-                  ? "lg:border-r lg:border-white/[0.06]"
-                  : ""
-              } ${
-                index < featuredServices.length - 2
-                  ? "max-md:border-b max-md:border-white/[0.06] max-md:pb-10 max-md:mb-0"
-                  : ""
-              } ${
-                index === featuredServices.length - 2 ||
-                index === featuredServices.length - 3
-                  ? "max-md:border-b max-md:border-white/[0.06] max-md:pb-10"
-                  : ""
-              }`}
+              className="group lg:px-8"
             >
-              {/* Icon */}
-              <div className="w-14 h-14 rounded-full bg-[#8A9576]/10 flex items-center justify-center mb-7 transition-all duration-300 group-hover:bg-[#3D8B5E]/20">
+              <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-accent-hover group-hover:-translate-y-1">
                 <service.icon
-                  size={24}
+                  size={22}
                   strokeWidth={1.6}
-                  className="text-[#8A9576] transition-colors duration-300 group-hover:text-[#4ade80]"
+                  className="text-white"
                 />
               </div>
-
-              {/* Title */}
-              <h3
-                className="text-[1.05rem] font-bold text-white mb-3 tracking-wide transition-colors duration-300 group-hover:text-[#f0f0f0]"
-                style={{ fontFamily: "'Inter', sans-serif" }}
-              >
+              <h3 className="text-lg font-bold text-ink mb-3 tracking-wide">
                 {service.title}
               </h3>
-
-              {/* Description */}
-              <p className="text-[0.85rem] leading-relaxed text-[#6b7280] max-w-[260px]">
+              <p className="text-[0.9rem] leading-relaxed text-muted">
                 {service.description}
               </p>
             </motion.div>

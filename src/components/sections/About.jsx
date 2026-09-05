@@ -1,88 +1,144 @@
 import { motion } from "framer-motion";
-import { FaDownload } from "react-icons/fa";
+import { FaDownload, FaArrowRight } from "react-icons/fa";
 import SectionTitle from "@/components/ui/SectionTitle";
+import profileImg from "@/assets/images/Profil.jpg";
+
+const stats = [
+  { value: "3+", label: "Years coding" },
+  { value: "15+", label: "Projects shipped" },
+  { value: "AI/ML", label: "Current focus" },
+];
+
+const focusAreas = ["React", "Tailwind CSS", "C++", "Algorithms", "UI/UX"];
+
+const container = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
 
 export default function About() {
   return (
-    <section id="about" className="section-padding">
+    <section id="about" className="section-padding bg-surface">
       <div className="container-custom">
-        <SectionTitle title="About" highlight="Me" />
+        <SectionTitle
+          label="About Me"
+          title="Who I am and"
+          highlight="what I do"
+        />
 
-        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-20">
+        <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-16 lg:gap-24 items-center">
           <motion.div
-            className="flex-1 text-center lg:text-left"
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            viewport={{ once: true }}
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="space-y-6 text-white/60 text-lg leading-relaxed">
-              <p>
-                Hey there! I&apos;m{" "}
-                <span className="text-white font-semibold">
-                  Oussama El Alaoui
-                </span>
-                , a passionate web developer and engineering student specializing
-                in{" "}
-                <span className="text-accent font-semibold">
-                  Artificial Intelligence
-                </span>
-                .
-              </p>
-              <p>
-                I love turning ideas into interactive and visually appealing
-                websites using{" "}
-                <span className="text-white font-medium">React</span>,{" "}
-                <span className="text-white font-medium">Tailwind CSS</span>,
-                and modern JavaScript frameworks.
-              </p>
-              <p>
-                Beyond coding, I explore UI/UX designs, learn new technologies,
-                and improve my problem-solving skills through C++ and algorithm
-                challenges. I&apos;m always looking for opportunities to
-                collaborate on meaningful projects.
-              </p>
-            </div>
+            <motion.p
+              variants={item}
+              className="text-2xl md:text-3xl font-display font-medium text-ink leading-snug mb-8 max-w-xl"
+            >
+              I build interactive web experiences and explore where AI meets
+              good design.
+            </motion.p>
 
             <motion.div
-              className="mt-10 flex justify-center lg:justify-start"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
+              variants={item}
+              className="space-y-5 text-muted text-base md:text-lg leading-relaxed max-w-xl"
             >
-              <a
-                href="/CV.pdf"
-                download
-                className="btn-primary inline-flex items-center gap-3"
-              >
+              <p>
+                I&apos;m Oussama El Alaoui, an engineering student
+                specializing in artificial intelligence, and a web developer
+                who likes turning ideas into things people can actually
+                click on.
+              </p>
+              <p>
+                Most of my work happens in React, Tailwind CSS, and modern
+                JavaScript, but I spend just as much time thinking through
+                layout and interaction as I do writing code.
+              </p>
+              <p>
+                Outside of that, I sharpen my problem-solving through C++
+                and algorithm challenges, and I&apos;m always up for
+                collaborating on something meaningful.
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={item}
+              className="flex flex-wrap gap-2 mt-8 max-w-xl"
+            >
+              {focusAreas.map((skill) => (
+                <span
+                  key={skill}
+                  className="px-3 py-1.5 rounded-full border border-line bg-surface text-muted text-sm"
+                >
+                  {skill}
+                </span>
+              ))}
+            </motion.div>
+
+            <motion.div
+              variants={item}
+              className="grid grid-cols-3 gap-6 mt-10 max-w-md border-t border-line pt-6"
+            >
+              {stats.map((stat) => (
+                <div key={stat.label}>
+                  <div className="text-2xl md:text-3xl font-bold text-ink">
+                    {stat.value}
+                  </div>
+                  <div className="text-muted text-sm mt-1">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+
+            <motion.div variants={item} className="flex flex-wrap gap-4 mt-10">
+              <a href="/CV.pdf" download className="btn-primary">
                 <FaDownload className="w-4 h-4" />
                 Download CV
+              </a>
+              <a href="#contact" className="btn-secondary">
+                Let&apos;s talk
+                <FaArrowRight className="w-3.5 h-3.5" />
               </a>
             </motion.div>
           </motion.div>
 
           <motion.div
-            className="flex-1 flex justify-center lg:justify-end"
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            className="relative flex justify-center lg:justify-end"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <div className="relative">
-              <div className="w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-accent/20 animate-pulse-glow">
+            <div className="relative w-64 h-80 md:w-72 md:h-96">
+              {/* offset accent panel behind the photo */}
+              <div className="absolute -top-4 -left-4 w-full h-full rounded-3xl bg-accent/15 border border-accent/20" />
+
+              <div className="relative w-full h-full rounded-3xl overflow-hidden border border-line">
                 <img
-                  src="/src/assets/images/Profil.jpg"
+                  src={profileImg}
                   alt="Oussama El Alaoui"
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center backdrop-blur-sm">
-                <span className="text-accent text-2xl font-bold">3+</span>
-                <span className="text-white/50 text-xs ml-1">
-                  years<br />coding
-                </span>
+
+              <div className="absolute -bottom-6 -right-6 rounded-2xl bg-surface border border-line px-5 py-4 shadow-xl">
+                <div className="text-accent text-xl font-bold leading-none">
+                  3+
+                </div>
+                <div className="text-muted text-xs mt-1 leading-tight">
+                  years coding
+                </div>
               </div>
             </div>
           </motion.div>

@@ -1,30 +1,30 @@
 const experience = [
   {
     id: 1,
-    role: "AI/ML Engineering Student",
-    company: "University of Jakarta",
-    period: "2022 - Present",
+    role: "AI Engineering Student",
+    company: "EMSI — École Marocaine des Sciences de l'Ingénieur",
+    period: "2023 - Present",
     description:
-      "Pursuing a degree in Engineering with a specialization in Artificial Intelligence and Machine Learning. Focus areas include deep learning, NLP, and data science.",
-    technologies: ["Python", "TensorFlow", "PyTorch", "Scikit-learn"],
+      "Pursuing an engineering degree specializing in Artificial Intelligence. Focus areas include machine learning, data science, and full-stack software development.",
+    technologies: ["Python", "JavaScript", "React", "Machine Learning"],
   },
   {
     id: 2,
+    role: "1st Place — EMSI Hackathon",
+    company: "EMSI",
+    period: "2025",
+    description:
+      "Won first place in the EMSI Hackathon, building a functional product with a team under a tight deadline. Demonstrated rapid prototyping, teamwork, and problem-solving.",
+    technologies: ["React", "Node.js", "MySQL"],
+  },
+  {
+    id: 3,
     role: "Freelance Web Developer",
     company: "Self-Employed",
     period: "2023 - Present",
     description:
-      "Building modern, responsive web applications for clients worldwide. Specializing in React, Tailwind CSS, and full-stack development.",
+      "Building modern, responsive web applications for clients. Specializing in React, Tailwind CSS, and full-stack development.",
     technologies: ["React", "Tailwind CSS", "Node.js", "MySQL"],
-  },
-  {
-    id: 3,
-    role: "Frontend Developer Intern",
-    company: "Tech Startup",
-    period: "2024 - 2024",
-    description:
-      "Contributed to the development of a SaaS dashboard, implemented responsive UI components, and collaborated with the design team.",
-    technologies: ["React", "TypeScript", "Figma", "REST APIs"],
   },
 ];
 

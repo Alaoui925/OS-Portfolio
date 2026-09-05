@@ -12,12 +12,13 @@ export default function Skills() {
       : skills.filter((skill) => skill.category === activeCategory);
 
   return (
-    <section id="skills" className="section-padding bg-secondary/30">
+    <section id="skills" className="section-padding">
       <div className="container-custom">
         <SectionTitle
-          title="My"
-          highlight="Skills"
-          subtitle="Technologies and tools I work with to bring ideas to life"
+          label="My Stack"
+          title="Technologies I"
+          highlight="work with"
+          subtitle="Tools and languages I use to bring ideas to life"
         />
 
         <motion.div
@@ -31,10 +32,10 @@ export default function Skills() {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
+              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeCategory === cat
-                  ? "bg-accent text-white shadow-lg shadow-accent/20"
-                  : "bg-surface text-white/50 hover:text-white hover:bg-surface-light border border-glass-border"
+                  ? "bg-accent text-white shadow-md shadow-accent/20"
+                  : "bg-surface text-muted hover:text-ink hover:bg-surface-light border border-line"
               }`}
             >
               {cat}
@@ -55,17 +56,17 @@ export default function Skills() {
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.4, delay: index * 0.03 }}
               viewport={{ once: true }}
-              className="group bg-surface rounded-2xl p-5 border border-glass-border hover:border-accent/30 transition-all duration-500 cursor-default"
+              className="group card-surface p-5 hover:border-accent/40 hover:-translate-y-1 cursor-default"
             >
               <div className="flex flex-col items-center gap-3">
                 <skill.icon
                   className="text-3xl md:text-4xl transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-1"
                   style={{ color: skill.color }}
                 />
-                <span className="text-sm text-white/60 group-hover:text-white transition-colors duration-300 font-medium">
+                <span className="text-sm text-muted group-hover:text-ink transition-colors duration-300 font-medium">
                   {skill.name}
                 </span>
-                <div className="w-full bg-white/5 rounded-full h-1.5 overflow-hidden">
+                <div className="w-full bg-ink/5 rounded-full h-1.5 overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: `${skill.level}%` }}
