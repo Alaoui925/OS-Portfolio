@@ -1,77 +1,65 @@
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
-import { contactInfo } from "@/data/socialLinks";
+import Reveal from "@/components/ui/Reveal";
+import SectionTitle from "@/components/ui/SectionTitle";
+import { profile } from "@/data/profile";
 
-const contactItems = [
-  { icon: Mail, label: "Email", value: contactInfo.email, href: `mailto:${contactInfo.email}` },
-  { icon: Phone, label: "Phone", value: contactInfo.phone, href: `tel:${contactInfo.phone.replace(/\s/g, "")}` },
-  { icon: MapPin, label: "Location", value: contactInfo.location, href: null },
+const CONTACT_LINKS = [
+  { label: "Email", value: profile.email, href: `mailto:${profile.email}` },
+  { label: "GitHub", value: `@Alaoui925`, href: profile.github },
+  ...(profile.linkedin
+    ? [{ label: "LinkedIn", value: "My LinkedIn profile", href: profile.linkedin }]
+    : []),
+  { label: "Based in", value: profile.location, href: null },
 ];
 
 export default function Contact() {
   return (
     <section id="contact" className="section-padding bg-secondary">
       <div className="container-custom">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="relative overflow-hidden rounded-3xl bg-accent-soft border border-accent/20 px-6 md:px-12 lg:px-16 py-14 md:py-20"
-        >
-          {/* soft glow */}
-          <div
-            aria-hidden="true"
-            className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-accent/15 blur-3xl"
-          />
+        <SectionTitle
+          label="Contact"
+          title="Let's build something"
+          highlight="real"
+          subtitle="Open to internships, collaboration, and interesting student or junior roles — especially anywhere AI meets solid software."
+        />
 
-          <div className="relative max-w-3xl">
-            <p className="eyebrow">Let&apos;s Create Something Great</p>
-            <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-medium leading-[1.12] text-ink">
-              Have a project in mind? I&apos;d{" "}
-              <em className="text-accent not-italic">love</em> to hear about
-              it.
-            </h2>
-
-            <div className="mt-10 flex flex-wrap gap-x-10 gap-y-5">
-              {contactItems.map((item) => (
-                <div key={item.label} className="flex items-center gap-3">
-                  <span className="w-9 h-9 rounded-full bg-white border border-line flex items-center justify-center">
-                    <item.icon size={15} strokeWidth={1.8} className="text-accent" />
-                  </span>
-                  <div>
-                    <p className="text-[0.65rem] uppercase tracking-[0.2em] text-muted">
-                      {item.label}
-                    </p>
-                    {item.href ? (
-                      <a
-                        href={item.href}
-                        className="text-sm font-medium text-ink hover:text-accent transition-colors"
-                      >
-                        {item.value}
-                      </a>
-                    ) : (
-                      <p className="text-sm font-medium text-ink">
-                        {item.value}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <a href={`mailto:${contactInfo.email}`} className="btn-primary mt-10">
-              Let&apos;s Talk
-              <ArrowRight size={17} strokeWidth={2.25} />
+        <Reveal className="grid gap-10 md:grid-cols-[1.2fr_1fr] md:gap-16">
+          <div>
+            <a href={`mailto:${profile.email}`} className="group inline-flex flex-col gap-1">
+              <span className="text-sm text-muted font-medium">Email me directly</span>
+              <span className="text-xl md:text-2xl font-medium text-ink group-hover:text-accent transition-colors break-all">
+                {profile.email}
+              </span>
+              <span className="text-accent text-sm font-semibold mt-1 inline-flex items-center gap-1.5">
+                Write a message
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
+                  <path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
             </a>
+
+            <p className="text-muted leading-relaxed mt-8 max-w-md">
+              If you're a recruiter or a peer with a project idea, email works best
+              — I read everything and reply within a day or two.
+            </p>
           </div>
 
-          {/* decorative dot */}
-          <span
-            aria-hidden="true"
-            className="absolute bottom-6 right-8 w-2.5 h-2.5 rounded-full bg-accent/50"
-          />
-        </motion.div>
+          <address className="not-italic grid content-start gap-4">
+            {CONTACT_LINKS.map((item) => (
+              <div key={item.label} className="flex items-center justify-between gap-4 border-b border-line pb-4">
+                <span className="text-[0.65rem] uppercase tracking-[0.22em] text-muted">
+                  {item.label}
+                </span>
+                {item.href ? (
+                  <a href={item.href} className="text-sm font-medium text-ink hover:text-accent transition-colors text-right">
+                    {item.value}
+                  </a>
+                ) : (
+                  <span className="text-sm font-medium text-ink text-right">{item.value}</span>
+                )}
+              </div>
+            ))}
+          </address>
+        </Reveal>
       </div>
     </section>
   );

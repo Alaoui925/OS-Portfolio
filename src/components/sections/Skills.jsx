@@ -1,85 +1,51 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import skills, { skillCategories } from "@/data/skills";
+import Reveal from "@/components/ui/Reveal";
 import SectionTitle from "@/components/ui/SectionTitle";
+import { skillGroups } from "@/data/skills";
 
 export default function Skills() {
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const filteredSkills =
-    activeCategory === "All"
-      ? skills
-      : skills.filter((skill) => skill.category === activeCategory);
-
   return (
-    <section id="skills" className="section-padding">
+    <section id="skills" className="section-padding bg-secondary">
       <div className="container-custom">
         <SectionTitle
-          label="My Stack"
-          title="Technologies I"
-          highlight="work with"
-          subtitle="Tools and languages I use to bring ideas to life"
+          label="Skills"
+          title="Evidence,"
+          highlight="not percentages"
+          subtitle="No progress bars. Every group points to where the skill was actually used."
         />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-3 mb-14"
-        >
-          {["All", ...skillCategories].map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeCategory === cat
-                  ? "bg-accent text-white shadow-md shadow-accent/20"
-                  : "bg-surface text-muted hover:text-ink hover:bg-surface-light border border-line"
+        <div className="grid md:grid-cols-2 gap-5">
+          {skillGroups.map((group, index) => (
+            <Reveal
+              key={group.id}
+              delay={index * 0.06}
+              className={`card-surface p-6 md:p-8 ${
+                index === skillGroups.length - 1 && skillGroups.length % 2 === 1
+                  ? "md:col-span-2"
+                : ""
               }`}
             >
-              {cat}
-            </button>
-          ))}
-        </motion.div>
-
-        <motion.div
-          layout
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5"
-        >
-          {filteredSkills.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.4, delay: index * 0.03 }}
-              viewport={{ once: true }}
-              className="group card-surface p-5 hover:border-accent/40 hover:-translate-y-1 cursor-default"
-            >
-              <div className="flex flex-col items-center gap-3">
-                <skill.icon
-                  className="text-3xl md:text-4xl transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-1"
-                  style={{ color: skill.color }}
-                />
-                <span className="text-sm text-muted group-hover:text-ink transition-colors duration-300 font-medium">
-                  {skill.name}
-                </span>
-                <div className="w-full bg-ink/5 rounded-full h-1.5 overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.level}%` }}
-                    transition={{ duration: 1, delay: 0.3 + index * 0.03 }}
-                    viewport={{ once: true }}
-                    className="h-full rounded-full"
-                    style={{ backgroundColor: skill.color }}
-                  />
-                </div>
+              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h3 className="text-lg font-semibold text-ink">{group.title}</h3>
+                <span className="text-xs italic text-muted">{group.note}</span>
               </div>
-            </motion.div>
+
+              <div className="flex flex-wrap gap-2 mt-5">
+                {group.skills.map((skill) => (
+                  <span key={skill} className="chip">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+
+              <p className="text-[0.78rem] leading-relaxed text-muted mt-5 pt-4 border-t border-line">
+                <span className="text-accent font-semibold uppercase tracking-[0.16em] text-[0.62rem] mr-2">
+                  Evidence
+                </span>
+                {group.evidence}
+              </p>
+            </Reveal>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

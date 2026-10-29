@@ -1,12 +1,19 @@
+/**
+ * Experience & education timeline.
+ * Only verified items: the user's own data files + public GitHub repos.
+ * No fabricated internships or roles.
+ */
+
 const experience = [
   {
     id: 1,
-    role: "AI Engineering Student",
+    role: "Engineering Student — Computer Science & Networks",
     company: "EMSI — École Marocaine des Sciences de l'Ingénieur",
-    period: "2023 - Present",
+    period: "2023 – 2028 (in progress)",
     description:
-      "Pursuing an engineering degree specializing in Artificial Intelligence. Focus areas include machine learning, data science, and full-stack software development.",
-    technologies: ["Python", "JavaScript", "React", "Machine Learning"],
+      "Degree program combining software engineering fundamentals — algorithms in C/C++, OOP in Java and C#, databases and SQL, networks and Linux — with a growing specialization in AI and data science.",
+    tags: ["C/C++", "Java", "C#", "SQL", "Linux"],
+    kind: "education",
   },
   {
     id: 2,
@@ -14,17 +21,29 @@ const experience = [
     company: "EMSI",
     period: "2025",
     description:
-      "Won first place in the EMSI Hackathon, building a functional product with a team under a tight deadline. Demonstrated rapid prototyping, teamwork, and problem-solving.",
-    technologies: ["React", "Node.js", "MySQL"],
+      "Shipped a working product with a team under hackathon-time constraints — rapid prototyping, division of work and a demo that stood up under scrutiny.",
+    tags: ["React", "Node.js", "MySQL"],
+    kind: "award",
   },
   {
     id: 3,
-    role: "Freelance Web Developer",
-    company: "Self-Employed",
-    period: "2023 - Present",
+    role: "Meta Front-End Developer Professional Certificate",
+    company: "Meta · Coursera",
+    period: "2025",
     description:
-      "Building modern, responsive web applications for clients. Specializing in React, Tailwind CSS, and full-stack development.",
-    technologies: ["React", "Tailwind CSS", "Node.js", "MySQL"],
+      "Professional certificate covering the front-end fundamentals: UI patterns, React, version control basics and testing mindset.",
+    tags: ["React", "JavaScript", "HTML/CSS"],
+    kind: "certification",
+  },
+  {
+    id: 4,
+    role: "Independent Projects & Self-Directed Learning",
+    company: "Personal",
+    period: "2023 – present",
+    description:
+      "Building real applications end to end — AirCanvas for computer vision, MediCare for product architecture, Woodora and this portfolio for front-end craft — and sharpening problem-solving through algorithm work.",
+    tags: ["Python", "React", "OpenCV", "Vite"],
+    kind: "experience",
   },
 ];
 

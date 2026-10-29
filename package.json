@@ -1,7 +1,7 @@
 {
-  "name": "first-react",
+  "name": "os-portfolio",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,19 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@radix-ui/react-toast": "^1.2.15",
-    "@tailwindcss/vite": "^4.1.12",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
     "framer-motion": "^12.23.24",
     "gsap": "^3.13.0",
     "lucide-react": "^0.542.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-icons": "^5.5.0",
-    "react-type-animation": "^3.2.0",
-    "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.12"
+    "tailwindcss": "^4.1.12",
+    "@tailwindcss/vite": "^4.1.12"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",

@@ -1,60 +1,43 @@
-# Hi, I'm Oussama El Alaoui 👋
+# Oussama El Alaoui — Portfolio
 
-### AI Engineering Student · Frontend Developer · Problem Solver
+AI-focused engineering portfolio, built with React 19 + Tailwind CSS 4 + Vite.
 
-I'm an engineering student at EMSI (2023–2028), specializing in Artificial Intelligence. I'm passionate about building clean, user-centered web experiences and continuously exploring new technologies — from frontend development to machine learning.
+Computer science & networks student at EMSI (2023–2028), working toward AI
+engineering. Every project on the site links to a real public repository —
+the portfolio itself is [OS-Portfolio](https://github.com/Alaoui925/OS-Portfolio).
 
----
+## Development
 
-## 🙋 About Me
+```bash
+npm install
+npm run dev        # http://localhost:5173
+```
 
-- 🎓 3rd-year engineering student at **EMSI**, specializing in **AI**
-- 🏆 **1st Place** — EMSI Hackathon
-- 📜 **Meta Front-End Developer Professional Certificate**
-- 🌍 Based in Morocco | Fluent in French, Advanced English, Native Arabic
-- 🌐 Portfolio: [www.oaportfolio.com](http://www.oaportfolio.com)
+## Build & deploy
 
----
+```bash
+npm run build      # production bundle → dist/
+npm run preview    # serve the production build locally
+npm run lint       # ESLint
+```
 
-## 🛠️ Skills & Tools
+## Project structure
 
-**Languages**
-`C` `C#` `Java` `JavaScript` `Python` `PHP` `SQL` `React`
+```
+src/
+  data/        profile, projects (case studies), skills, experience — single source of truth
+  components/
+    layout/    Navbar, Footer
+    sections/  Hero, TechMarquee, About, Skills, Projects, Experience, Contact
+    ui/        Reveal (shared motion), SectionTitle, ScrollToTop
+  hooks/       useScrollSpy
+  styles/      globals.css — "Carbon & Emerald" design tokens
+```
 
-**Web Development**
-`HTML` `CSS` `Tailwind CSS`
+## Design notes
 
-**Systems & Tools**
-`Linux` `Git & GitHub` `XAMPP` `VS Code`
-
-**Other**
-`UI/UX Basics` `Responsive Design` `Algorithms & Problem Solving`
-
----
-
-## 🚀 Projects
-
-### 🔗 UniConnect
-> A platform connecting university students — built to streamline academic collaboration and communication.
-
----
-
-### 📦 Delivery Calculator
-> An interactive web app with a clean UI for calculating delivery costs and managing logistics logic.
-
-- **Tech:** HTML, CSS, JavaScript
-
----
-
-## 📬 Contact
-
-| | |
-|---|---|
-| 📧 Email | [elalaouioussama2002@gmail.com](mailto:elalaouioussama2002@gmail.com) |
-| 📱 Phone | +212 6 96 15 92 51 |
-| 🌐 Portfolio | [www.oaportfolio.com](http://www.oaportfolio.com) |
-| 🐙 GitHub | [github.com/Alaoui925](https://github.com/Alaoui925) |
-
----
-
-*Always learning. Always building.*
+- Dark tonal surfaces (`#0b0c0a`) with a single emerald accent (`#22C55E`).
+- Fraunces for display type, Inter for UI text.
+- Case studies with **verified** links only; skills organized by evidence
+  (which project used what), with no invented percentages.
+- `prefers-reduced-motion` respected globally, including the GSAP marquee.

@@ -1,147 +1,95 @@
+import Reveal from "@/components/ui/Reveal";
 import { motion } from "framer-motion";
-import { FaDownload, FaArrowRight } from "react-icons/fa";
 import SectionTitle from "@/components/ui/SectionTitle";
-import profileImg from "@/assets/images/Profil.jpg";
+import { profile } from "@/data/profile";
 
-const stats = [
-  { value: "3+", label: "Years coding" },
-  { value: "15+", label: "Projects shipped" },
-  { value: "AI/ML", label: "Current focus" },
-];
-
-const focusAreas = ["React", "Tailwind CSS", "C++", "Algorithms", "UI/UX"];
-
-const container = {
+const stagger = {
   hidden: {},
-  show: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-  },
+  show: { transition: { staggerChildren: 0.08 } },
 };
 
-const item = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+const staggerChild = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
+
+const FACTS = [
+  { label: "Education", value: "EMSI — CS & Networks, 2023–2028" },
+  { label: "Focus", value: "AI, data & software engineering" },
+  { label: "Based in", value: profile.location },
+  { label: "Languages", value: "Arabic · French · English" },
+];
 
 export default function About() {
   return (
-    <section id="about" className="section-padding bg-surface">
+    <section id="about" className="section-padding bg-primary">
       <div className="container-custom">
         <SectionTitle
-          label="About Me"
-          title="Who I am and"
-          highlight="what I do"
+          label="About"
+          title="Engineer first,"
+          highlight="AI on the horizon"
+          subtitle="How I got here, and where I'm heading."
         />
 
-        <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-16 lg:gap-24 items-center">
+        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-14 lg:gap-20 items-start">
           <motion.div
-            variants={container}
+            variants={stagger}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
+            className="space-y-5 text-muted text-base md:text-lg leading-relaxed"
           >
-            <motion.p
-              variants={item}
-              className="text-2xl md:text-3xl font-display font-medium text-ink leading-snug mb-8 max-w-xl"
-            >
-              I build interactive web experiences and explore where AI meets
-              good design.
+            <motion.p variants={staggerChild} className="text-ink text-xl md:text-2xl font-display font-medium leading-snug">
+              I like building things that work — then understanding exactly why they work.
             </motion.p>
 
-            <motion.div
-              variants={item}
-              className="space-y-5 text-muted text-base md:text-lg leading-relaxed max-w-xl"
-            >
-              <p>
-                I&apos;m Oussama El Alaoui, an engineering student
-                specializing in artificial intelligence, and a web developer
-                who likes turning ideas into things people can actually
-                click on.
-              </p>
-              <p>
-                Most of my work happens in React, Tailwind CSS, and modern
-                JavaScript, but I spend just as much time thinking through
-                layout and interaction as I do writing code.
-              </p>
-              <p>
-                Outside of that, I sharpen my problem-solving through C++
-                and algorithm challenges, and I&apos;m always up for
-                collaborating on something meaningful.
-              </p>
-            </motion.div>
+            <motion.p variants={staggerChild}>
+              I'm a computer science &amp; networks engineering student at EMSI
+              (2023–2028). The engineering program gave me the fundamentals —
+              algorithms in C/C++, OOP in Java and C#, databases and SQL,
+              networks and Linux — and I kept gravitating toward the layer where
+              those fundamentals meet real products.
+            </motion.p>
 
-            <motion.div
-              variants={item}
-              className="flex flex-wrap gap-2 mt-8 max-w-xl"
-            >
-              {focusAreas.map((skill) => (
-                <span
-                  key={skill}
-                  className="px-3 py-1.5 rounded-full border border-line bg-surface text-muted text-sm"
-                >
-                  {skill}
-                </span>
-              ))}
-            </motion.div>
+            <motion.p variants={staggerChild}>
+              That pull shows up in my projects. AirCanvas came from curiosity
+              about computer vision; MediCare from wanting to understand how a
+              full multi-role platform holds together; Woodora and this site
+              from caring about the front-end details most people skip.
+            </motion.p>
 
-            <motion.div
-              variants={item}
-              className="grid grid-cols-3 gap-6 mt-10 max-w-md border-t border-line pt-6"
-            >
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <div className="text-2xl md:text-3xl font-bold text-ink">
-                    {stat.value}
-                  </div>
-                  <div className="text-muted text-sm mt-1">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </motion.div>
+            <motion.p variants={staggerChild}>
+              My direction is{" "}
+              <span className="text-ink font-medium">AI engineering</span>: the
+              data side (Python, NumPy, Pandas) applied to problems with real
+              interfaces. In a hackathon, in coursework, and in side projects, my
+              goal stays the same — solutions that ship and hold up afterwards.
+            </motion.p>
 
-            <motion.div variants={item} className="flex flex-wrap gap-4 mt-10">
-              <a href="/CV.pdf" download className="btn-primary">
-                <FaDownload className="w-4 h-4" />
-                Download CV
-              </a>
-              <a href="#contact" className="btn-secondary">
-                Let&apos;s talk
-                <FaArrowRight className="w-3.5 h-3.5" />
-              </a>
+            <motion.div variants={staggerChild} className="pt-2 flex flex-wrap gap-2.5">
+              {["Problem solving", "Clean architecture", "Design details", "Teamwork"].map(
+                (trait) => (
+                  <span key={trait} className="chip">
+                    {trait}
+                  </span>
+                )
+              )}
             </motion.div>
           </motion.div>
 
-          <motion.div
-            className="relative flex justify-center lg:justify-end"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            <div className="relative w-64 h-80 md:w-72 md:h-96">
-              {/* offset accent panel behind the photo */}
-              <div className="absolute -top-4 -left-4 w-full h-full rounded-3xl bg-accent/15 border border-accent/20" />
-
-              <div className="relative w-full h-full rounded-3xl overflow-hidden border border-line">
-                <img
-                  src={profileImg}
-                  alt="Oussama El Alaoui"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="absolute -bottom-6 -right-6 rounded-2xl bg-surface border border-line px-5 py-4 shadow-xl">
-                <div className="text-accent text-xl font-bold leading-none">
-                  3+
+          <Reveal delay={0.15} className="card-surface bg-surface p-7 md:p-8">
+            <p className="eyebrow mb-6">Quick facts</p>
+            <dl className="grid gap-5">
+              {FACTS.map((fact) => (
+                <div key={fact.label} className="border-b border-line last:border-0 pb-5 last:pb-0">
+                  <dt className="text-[0.65rem] uppercase tracking-[0.22em] text-muted">
+                    {fact.label}
+                  </dt>
+                  <dd className="text-sm text-ink font-medium mt-1.5">{fact.value}</dd>
                 </div>
-                <div className="text-muted text-xs mt-1 leading-tight">
-                  years coding
-                </div>
-              </div>
-            </div>
-          </motion.div>
+              ))}
+            </dl>
+          </Reveal>
         </div>
       </div>
     </section>
