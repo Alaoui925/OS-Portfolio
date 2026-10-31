@@ -5,8 +5,9 @@
 [![React](https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white)](https://react.dev)
 [![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4-38BDF8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![First Load JS](https://img.shields.io/badge/First_Load_JS-171_kB-4F46C9)](#performance--accessibility)
+[![MIT License](https://img.shields.io/badge/License-MIT-1B1812)](LICENSE)
 
-**Live:** [www.oaportfolio.com](https://www.oaportfolio.com) ·
+**Live:** [os-portfolio-chi.vercel.app](https://os-portfolio-chi.vercel.app) ·
 **GitHub:** [@Alaoui925](https://github.com/Alaoui925)
 
 Portfolio of Oussama El Alaoui — engineering student in Computer Science &
@@ -159,8 +160,9 @@ Run against a local preview server (`npx serve out`) with
 ## Deployment
 
 `npm run build` produces a fully static `out/` directory — deployable to any
-static host or CDN. The live site at [www.oaportfolio.com](https://www.oaportfolio.com)
-serves this exact export.
+static host or CDN. The portfolio deploys **on Vercel**, which rebuilds the
+export automatically on every push to `main`:
+[os-portfolio-chi.vercel.app](https://os-portfolio-chi.vercel.app).
 
 ## Author
 
@@ -169,7 +171,7 @@ open to AI / Data-Science internships and final-year projects (PFE).
 
 - GitHub: [@Alaoui925](https://github.com/Alaoui925)
 - Email: elalaouioussama2002@gmail.com
-- CV: [download](https://www.oaportfolio.com/cv.pdf)
+- CV: [download](https://os-portfolio-chi.vercel.app/cv.pdf)
 
-© 2026 Oussama El Alaoui. Code is shared for reference; the design and
-written content are personal work.
+© 2026 Oussama El Alaoui. Code released under the
+[MIT License](LICENSE); the design and written content are personal work.

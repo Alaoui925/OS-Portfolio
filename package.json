@@ -2,6 +2,7 @@
   "name": "os-portfolio",
   "version": "2.0.0",
   "private": true,
+  "license": "MIT",
   "description": "Personal portfolio of Oussama El Alaoui — AI engineer-in-training. Light theme, editorial, built with Next.js + TypeScript + Tailwind CSS 4.",
   "scripts": {
     "dev": "next dev",
