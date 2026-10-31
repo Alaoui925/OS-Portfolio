@@ -1,0 +1,241 @@
+@import "tailwindcss";
+
+/*
+  ─────────────────────────────────────────────────────────────
+  OS-Portfolio — "Digital Atlas" design tokens
+  Light theme only. Warm cream paper, single Majorelle voice.
+  Every colour / radius / spacing value lives here.
+  ─────────────────────────────────────────────────────────────
+*/
+
+:root {
+  /* surfaces */
+  --paper: #f6f3ec;            /* page base — warm cream */
+  --paper-well: #efece2;       /* recessed wells, panels */
+  --paper-raised: #fbf9f4;     /* lifted surface (cards) */
+
+  /* ink ramp (hue 40° warm-tinted, never pure black) */
+  --ink: #1b1812;              /* primary text, ink fills */
+  --ink-soft: #3f3a31;         /* body text */
+  --ink-muted: #6b655a;        /* secondary text — >= 4.5:1 on paper */
+  --ink-faint: #8a8578;        /* decorative ghost numerals only */
+
+  /* hairlines */
+  --line: #dcd7ca;
+  --line-strong: #c7c1b2;
+
+  /* the voice — Majorelle */
+  --brand: #4f46c9;
+  --brand-hover: #413ac6;
+  --brand-active: #372fa8;
+  --brand-tint: #ddd9f4;
+  --brand-on-ink: #a5b4fc;     /* brand readable on --ink surfaces */
+
+  /* fixed chrome + layout */
+  --bar-h: 3.5rem;
+  --max-w: 72rem;
+
+  /* radii — hard-edged atlas */
+  --radius-0: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-chamfer: 14px;      /* the signature corner cut */
+
+  /* spacing rhythm */
+  --space-section: clamp(5rem, 3rem + 8vw, 10rem);
+  --space-block: clamp(2.5rem, 1.6rem + 3.5vw, 4.5rem);
+
+  /* pinned horizontal exhibit (section 03) */
+  --exhibit-gap: clamp(1.5rem, 1rem + 2vw, 4rem);
+  /* rail cards align with the max-width content edge, falling back to 6vw inside it */
+  --exhibit-inset: max(6vw, calc((100vw - var(--max-w)) / 2 + 2rem));
+
+  /* elevation — used sparingly (light theme needs hairlines more than shadows) */
+  --shadow-bar: 0 1px 0 var(--line);
+  --shadow-overlay: 0 24px 64px hsla(40, 12%, 10%, 0.16);
+  --shadow-card: 0 1px 2px hsla(40, 12%, 10%, 0.05), 0 24px 48px -28px hsla(40, 12%, 10%, 0.28);
+  --shadow-card-hover: 0 1px 2px hsla(40, 12%, 10%, 0.06), 0 30px 60px -26px hsla(40, 12%, 10%, 0.34);
+
+  /* focus + selection */
+  --selection: hsl(248, 62%, 88%);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-well: var(--paper-well);
+  --color-raised: var(--paper-raised);
+  --color-ink: var(--ink);
+  --color-soft: var(--ink-soft);
+  --color-muted: var(--ink-muted);
+  --color-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-active: var(--brand-active);
+  --color-brand-tint: var(--brand-tint);
+  --color-brand-on-ink: var(--brand-on-ink);
+
+  --font-display: var(--font-archivo), "Archivo", "Arial Narrow", sans-serif;
+  --font-body: var(--font-hanken), "Hanken Grotesk", "Segoe UI", sans-serif;
+  --font-mono: var(--font-spacemono), "Space Mono", "Consolas", monospace;
+
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+
+  --shadow-bar: var(--shadow-bar);
+  --shadow-overlay: var(--shadow-overlay);
+  --shadow-card: var(--shadow-card);
+  --shadow-card-hover: var(--shadow-card-hover);
+
+  --animate-marquee: marquee var(--marquee-duration, 38s) linear infinite;
+  --animate-gauge-pulse: gauge-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--marquee-gap, 1rem)));
+  }
+}
+
+@keyframes gauge-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(0.82);
+  }
+}
+
+/* ── base ─────────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--bar-h) + 1.5rem);
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink-soft);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* links + buttons never keep the default arrow cursor */
+a,
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--selection);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}
+
+/* display type helpers */
+.display {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  font-stretch: 114%;
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.micro {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* the atlas corner-cut, echoing a zellige tile */
+.chamfer {
+  clip-path: polygon(0 0, calc(100% - var(--radius-chamfer)) 0, 100% var(--radius-chamfer), 100% 100%, 0 100%);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── pinned horizontal exhibit (section 03) ─────────────────── */
+
+/* scroll runway: viewport height + the track overflow — while this
+   distance is scrolled the stage is sticky, i.e. the section is pinned */
+.work-runway {
+  height: calc(100svh + var(--exhibit-overflow, 0px));
+}
+
+/* compositing hints, engaged only while the exhibit is on screen
+   (the is-animating class is toggled by an IntersectionObserver) */
+.is-animating .exhibit-track,
+.is-animating .exhibit-media-x {
+  will-change: transform;
+}
+
+/* active-card emphasis: idle cards sit back, the in-view card lifts.
+   0.65 keeps body copy at ≥ 4.5:1 against the raised surface. */
+.work-card {
+  opacity: 0.65;
+  transform: scale(0.985);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+
+  /* width budget: the tallest thing the card may need inside the pinned
+     stage is its 16/9 media slot + the fixed body slot block (≈340px) —
+     invert that through the media ratio (× 16⁄9) with ≈440px of stage
+     chrome reserved (progress row, breathing room) and 480px floor for
+     degenerate short windows. Cards share this one width rule, so every
+     instance has the same media proportion. */
+  width: max(
+    480px,
+    min(clamp(680px, 72vw, 1100px), calc((100svh - 440px) * 1.7777778))
+  );
+}
+.work-card[data-active="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* headings break well; paragraphs never orphan a word */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+p,
+li {
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
