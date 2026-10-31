@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Archivo, Hanken_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { MotionProvider } from "@/components/motion/motion-provider";
+import { Analytics } from "@vercel/analytics/next";
 import { profile } from "@/lib/data/profile";
 
 const archivo = Archivo({
@@ -101,6 +102,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <MotionProvider>{children}</MotionProvider>
+        {/*
+            Vercel Web Analytics — injects the edge-served script on Vercel
+            deployments (static export included) and no-ops everywhere else
+            (silently skips development; local exports just skip the fetch).
+            Cookie-less, so no consent banner is needed.
+        */}
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}

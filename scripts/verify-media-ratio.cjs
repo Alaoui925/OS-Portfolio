@@ -7,7 +7,14 @@ const sizes = [["desktop-2k",1920,1080],["desktop-fhd",1440,900],["tablet-land",
   for (const [name, w, h] of sizes) {
     const page = await browser.newPage({ viewport: { width: w, height: h } });
     const errs = [];
-    page.on("console", (m) => { if (m.type() === "error") errs.push(m.text().slice(0, 120)); });
+    // correlate the generic "Failed to load resource" line with real 404 URLs:
+    // the /_vercel analytics script 404s only on the local static export
+    const dud404 = new Set();
+    page.on("response", (r) => { if (r.status() === 404) dud404.add(r.url()); });
+    page.on("console", (m) => {
+      if (m.type() === "error" && !(m.text().includes("Failed to load resource") && [...dud404].some((u) => u.includes("/_vercel/"))))
+        errs.push(m.text().slice(0, 120));
+    });
     page.on("pageerror", (e) => errs.push("pageerror: " + e.message.slice(0, 120)));
     await page.goto(BASE, { waitUntil: "networkidle" });
     await page.waitForTimeout(600);

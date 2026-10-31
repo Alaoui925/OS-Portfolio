@@ -13,12 +13,34 @@ const { chromium } = require("playwright");
 
 const BASE = process.env.BASE || "http://localhost:3210";
 
+/**
+ * Collect console problem lines + the set of URLs that 404'd on this page.
+ * The Vercel-edge analytics script (/_vercel/insights/script.js) 404s on the
+ * local static export by design — such lines are removed by vercel404Only().
+ */
 const listen = (page, bag) => {
+  const dud404 = new Set();
+  page.on("response", (r) => {
+    if (r.status() === 404) dud404.add(r.url());
+  });
   page.on("console", (m) => {
-    if (m.type() === "error" || m.type() === "warning") bag.push(`${m.type()}: ${m.text().slice(0, 200)}`);
+    if (m.type() === "error" || m.type() === "warning")
+      bag.push(`${m.type()}: ${m.text().slice(0, 200)}`);
   });
   page.on("pageerror", (e) => bag.push(`pageerror: ${e.message.slice(0, 200)}`));
+  return dud404;
 };
+
+/* drop "Failed to load resource" lines only when a /_vercel URL actually 404'd
+   (the analytics script is edge-served by Vercel in real deployments) */
+const vercel404Only = (lines, duds) =>
+  lines.filter(
+    (line) =>
+      !(
+        line.includes("Failed to load resource") &&
+        [...duds].some((u) => u.includes("/_vercel/"))
+      ),
+  );
 
 (async () => {
   const browser = await chromium.launch();
@@ -27,7 +49,7 @@ const listen = (page, bag) => {
   /* ── desktop rail ─────────────────────────────────────────── */
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   const consoleDesktop = [];
-  listen(page, consoleDesktop);
+  const dudsDesktop = listen(page, consoleDesktop);
   await page.goto(BASE, { waitUntil: "networkidle" });
   await page.evaluate(() => {
     document.querySelector("#work").scrollIntoView({ behavior: "instant", block: "start" });
@@ -126,13 +148,13 @@ const listen = (page, bag) => {
     };
   });
 
-  report.consoleDesktop = consoleDesktop;
+  report.consoleDesktop = vercel404Only(consoleDesktop, dudsDesktop);
   await page.close();
 
   /* ── mobile <768px → stacked ──────────────────────────────── */
   const mob = await browser.newPage({ viewport: { width: 390, height: 844 } });
   const consoleMob = [];
-  listen(mob, consoleMob);
+  const dudsMob = listen(mob, consoleMob);
   await mob.goto(BASE, { waitUntil: "networkidle" });
   await mob.waitForTimeout(900);
   report.mobile = await mob.evaluate(() => {
@@ -149,7 +171,7 @@ const listen = (page, bag) => {
       noHScroll: document.documentElement.scrollWidth <= window.innerWidth + 1,
     };
   });
-  report.consoleMobile = consoleMob;
+  report.consoleMobile = vercel404Only(consoleMob, dudsMob);
   await mob.screenshot({ path: "_verify/mobile-stack.png", fullPage: false });
   await mob.close();
 
@@ -159,14 +181,14 @@ const listen = (page, bag) => {
     reducedMotion: "reduce",
   });
   const consoleRM = [];
-  listen(rm, consoleRM);
+  const dudsRM = listen(rm, consoleRM);
   await rm.goto(BASE, { waitUntil: "networkidle" });
   await rm.waitForTimeout(900);
   report.reducedMotion = await rm.evaluate(() => ({
     runwayGone: document.querySelector(".work-runway") === null,
     stackedCards: document.querySelectorAll("#work article").length,
   }));
-  report.consoleReduced = consoleRM;
+  report.consoleReduced = vercel404Only(consoleRM, dudsRM);
   await rm.close();
 
   /* ── desktop screenshots ─────────────────────────────────── */
