@@ -188,6 +188,7 @@ export const projects: Project[] = [
     exhibit:
       "Editorial concept for an Annecy café — narrative typography, seasonal roast drops as tasting notes, in-page cart. Cream on terracotta.",
     github: "https://github.com/Alaoui925/haven-coffee-website",
+    demo:"https://haven-coffee-website-green.vercel.app/",
     stack: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn-style UI", "Lucide"],
     problem:
       "Café and roastery sites are usually interchangeable template grids. I wanted the warmth of a real roastery translated into a design system — serif editorial type over espresso-brown, terracotta accents, roast cards that read like tasting notes.",
