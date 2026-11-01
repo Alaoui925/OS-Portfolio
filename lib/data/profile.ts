@@ -1,8 +1,3 @@
-/**
- * Single source of truth for identity, links and contact info.
- * Every section reads from here — no duplicated or placeholder links.
- * Only links verified to exist; add LinkedIn when ready and the UI adapts.
- */
 
 export const profile = {
   name: "Oussama El Alaoui",
@@ -13,7 +8,6 @@ export const profile = {
     "Engineering student in Computer Science & Networks, focused on AI and data — and on software that actually ships.",
   location: "Morocco",
   github: "https://github.com/Alaoui925",
-  // linkedin: "https://www.linkedin.com/in/…", // ← add when ready
   email: "elalaouioussama2002@gmail.com",
   cv: "/cv.pdf",
   education: {

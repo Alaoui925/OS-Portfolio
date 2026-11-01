@@ -1,9 +1,3 @@
-/**
- * Experience, education and evidence timeline.
- * Only verified items: the user's own records + public repos.
- * No fabricated roles or internships.
- */
-
 export type TimelineKind = "education" | "award" | "certification" | "experience";
 
 export interface TimelineItem {

@@ -192,12 +192,15 @@ button,
   will-change: transform;
 }
 
-/* active-card emphasis: idle cards sit back, the in-view card lifts.
+/* active-card emphasis: idle cards sit back via opacity only — size is
+   never part of the emphasis, every card keeps one height and width.
    0.65 keeps body copy at ≥ 4.5:1 against the raised surface. */
 .work-card {
+  /* the <li> wrapper is flex-stretched to the tallest card on the rail,
+     so every card resolves to that same height */
+  height: 100%;
   opacity: 0.65;
-  transform: scale(0.985);
-  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
 
   /* width budget: the tallest thing the card may need inside the pinned
      stage is its 16/9 media slot + the fixed body slot block (≈340px) —
@@ -212,7 +215,6 @@ button,
 }
 .work-card[data-active="true"] {
   opacity: 1;
-  transform: none;
 }
 
 /* headings break well; paragraphs never orphan a word */

@@ -183,11 +183,11 @@ function Rail() {
       style={{ "--exhibit-overflow": "0px" } as React.CSSProperties}
       onFocusCapture={focusOnCard}
     >
-      <div ref={stageRef} className="sticky top-0 h-svh overflow-clip">
+      <div ref={stageRef} className="sticky top-0 flex h-svh items-center overflow-clip">
         <motion.ol
           ref={trackRef}
           aria-label="Selected projects"
-          className="exhibit-track flex h-full w-max list-none items-center gap-(--exhibit-gap) pl-(--exhibit-inset) pr-(--exhibit-inset)"
+          className="exhibit-track flex w-max shrink-0 list-none gap-(--exhibit-gap) pl-(--exhibit-inset) pr-(--exhibit-inset)"
           style={{ x: springX }}
         >
           {exhibitProjects.map((project, i) => (
@@ -298,14 +298,14 @@ function WorkCard({
       data-active={rail && idx === 0 ? "true" : undefined}
       aria-labelledby={`${project.id}-exhibit-title`}
       className={cn(
-        "chamfer relative flex flex-col overflow-hidden border border-line bg-raised",
+        "chamfer relative flex h-full flex-col overflow-hidden border border-line bg-raised",
         rail ? "work-card shadow-card" : "w-full",
       )}
     >
       {/* media slot — one shared aspect-video (16/9) class in both modes, so
           the proportion is identical on every card, every viewport.
-          object-cover anchored top-left keeps app-screenshot headers (logo,
-          product title) in frame instead of slicing them. */}
+          object-contain letterboxes each screenshot's full hero (logo,
+          headline, CTAs) on the well mat instead of cover-cropping it. */}
       <div
         className={cn(
           "relative shrink-0 overflow-hidden border-b border-line bg-well",
@@ -314,21 +314,21 @@ function WorkCard({
       >
         <span
           aria-hidden="true"
-          className="micro absolute left-0 top-0 z-10 border-b border-r border-line bg-raised px-3 py-1.5 text-ink tabular"
+          className="micro absolute bottom-0 right-0 z-10 border-l border-t border-line bg-raised px-3 py-1.5 text-ink tabular"
         >
           {project.index}
         </span>
 
-        {/* px-based overhang ≥ 2 × PARALLAX at any card width */}
+        {/* contained fit: the parcel drift always keeps the full hero in frame */}
         {visual.kind === "image" ? (
-          <div className="absolute inset-y-0 left-[-12px] w-[calc(100%+24px)]">
+          <div className="absolute inset-0 bg-[#fbf9f4]">
             <motion.div className="exhibit-media-x h-full w-full" style={{ x: mediaX }}>
               <Image
                 src={visual.src}
                 alt={visual.alt}
                 width={visual.width}
                 height={visual.height}
-                className="h-full w-full object-cover object-left-top"
+                className="h-full w-full object-contain"
                 sizes="(min-width: 768px) 65vw, 100vw"
               />
             </motion.div>

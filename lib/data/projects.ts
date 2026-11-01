@@ -103,7 +103,7 @@ export const projects: Project[] = [
     role: "Solo project — REST API and SPA",
     visual: {
       kind: "image",
-      src: "/images/uniconnect.jpg",
+      src: "/images/uniconnect.png",
       width: 1440,
       height: 900,
       alt: "UniConnect — student platform interface",
@@ -137,7 +137,7 @@ export const projects: Project[] = [
     role: "Solo project — designed and built end to end",
     visual: {
       kind: "image",
-      src: "/images/medicare.jpg",
+      src: "/images/medicare.png",
       width: 980,
       height: 853,
       alt: "MediCare hospital reservation platform — doctor directory with live availability",
@@ -169,7 +169,7 @@ export const projects: Project[] = [
     role: "Solo project — design and front-end implementation",
     visual: {
       kind: "image",
-      src: "/images/woodora.jpg",
+      src: "/images/woodora.png",
       width: 1000,
       height: 456,
       alt: "Woodora furniture storefront — image-led catalogue layout",
@@ -203,7 +203,7 @@ export const projects: Project[] = [
     role: "Solo project — concept, design and implementation",
     visual: {
       kind: "image",
-      src: "/images/haven.jpg",
+      src: "/images/haven.png",
       width: 1200,
       height: 750,
       alt: "Haven Coffee editorial website — roasted-the-slow-way hero with roast card",
